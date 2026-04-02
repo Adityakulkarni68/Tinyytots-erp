@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate, useLocation, NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
@@ -20,6 +21,7 @@ export default function Sidebar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const links = user?.role ? (NAV_LINKS[user.role] ?? []) : [];
 
@@ -40,7 +42,6 @@ export default function Sidebar() {
     <>
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex flex-col w-56 bg-white border-r border-slate-200 min-h-screen shrink-0">
-        {/* Brand */}
         <div className="px-5 py-5 border-b border-slate-100">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center shrink-0">
@@ -53,7 +54,6 @@ export default function Sidebar() {
           </div>
         </div>
 
-        {/* Nav */}
         <nav className="flex-1 px-3 py-4 space-y-0.5">
           <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider px-3 mb-2">Main Menu</p>
           {links.map(({ to, label, icon }) => (
@@ -61,9 +61,7 @@ export default function Sidebar() {
               key={to}
               to={to}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                isActive(to)
-                  ? 'bg-purple-600 text-white shadow-sm'
-                  : 'text-slate-600 hover:bg-slate-50 hover:text-slate-800'
+                isActive(to) ? 'bg-purple-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-800'
               }`}
             >
               <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -74,7 +72,6 @@ export default function Sidebar() {
           ))}
         </nav>
 
-        {/* User */}
         <div className="px-3 py-4 border-t border-slate-100">
           <div className="flex items-center gap-3 px-3 py-2 rounded-xl bg-slate-50 mb-2">
             <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center shrink-0">
@@ -105,23 +102,73 @@ export default function Sidebar() {
           </div>
           <span className="font-bold text-slate-800 text-sm">TINYY TOTS</span>
         </div>
-        <div className="flex items-center gap-2 overflow-x-auto">
-          {links.map(({ to, label }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
-                isActive(to) ? 'bg-purple-600 text-white' : 'text-slate-600 hover:bg-slate-100'
-              }`}
-            >
-              {label}
-            </NavLink>
-          ))}
-          <button onClick={handleLogout} className="text-xs text-slate-500 hover:text-red-500 px-2 py-1.5 transition-colors">
-            Logout
-          </button>
-        </div>
+        <button
+          onClick={() => setMenuOpen((v) => !v)}
+          className="p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors"
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
       </div>
+
+      {/* Mobile drawer */}
+      {menuOpen && (
+        <div className="lg:hidden fixed inset-0 z-30" onClick={() => setMenuOpen(false)}>
+          <div className="absolute inset-0 bg-black/30" />
+          <div
+            className="absolute top-14 left-0 right-0 bg-white border-b border-slate-200 shadow-lg px-4 py-3"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* User info */}
+            <div className="flex items-center gap-3 px-3 py-2 rounded-xl bg-slate-50 mb-3">
+              <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center shrink-0">
+                <span className="text-purple-700 font-bold text-xs">{initials}</span>
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-slate-800">{user?.displayName}</p>
+                <p className="text-xs text-slate-400 capitalize">{user?.role}</p>
+              </div>
+            </div>
+
+            {/* Nav links */}
+            <div className="space-y-1 mb-3">
+              {links.map(({ to, label, icon }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  onClick={() => setMenuOpen(false)}
+                  className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all ${
+                    isActive(to) ? 'bg-purple-600 text-white' : 'text-slate-600 hover:bg-slate-50'
+                  }`}
+                >
+                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d={icon} />
+                  </svg>
+                  {label}
+                </NavLink>
+              ))}
+            </div>
+
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              Logout
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }

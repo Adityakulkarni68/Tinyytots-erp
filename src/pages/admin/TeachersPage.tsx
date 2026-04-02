@@ -88,19 +88,20 @@ export default function AdminTeachersPage() {
           {teachers.map((t) => {
             const initials = t.displayName.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase();
             return (
-              <div key={t.uid} className="flex items-center gap-4 px-5 py-4">
-                <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
-                  <span className="text-primary-700 font-bold text-sm">{initials}</span>
+              <div key={t.uid} className="flex items-center gap-3 px-4 py-4">
+                <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center shrink-0">
+                  <span className="text-purple-700 font-bold text-sm">{initials}</span>
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-slate-800">{t.displayName}</p>
                   <p className="text-xs text-slate-500 truncate">{t.email}</p>
+                  <p className="text-xs text-slate-400 mt-0.5 sm:hidden">{t.classNames}</p>
                 </div>
-                <p className="text-sm text-slate-400 hidden sm:block truncate max-w-[160px]">{t.classNames}</p>
+                <p className="text-sm text-slate-400 hidden sm:block truncate max-w-[140px]">{t.classNames}</p>
                 <button
                   onClick={() => deleteTeacher(t)}
                   disabled={deletingId === t.uid}
-                  className="text-sm text-red-500 hover:text-red-700 disabled:opacity-40 font-medium transition-colors whitespace-nowrap"
+                  className="text-xs font-medium text-red-500 hover:text-red-700 disabled:opacity-40 transition-colors whitespace-nowrap px-2.5 py-1.5 rounded-lg border border-red-200 hover:bg-red-50 shrink-0"
                 >
                   {deletingId === t.uid ? '...' : 'Delete'}
                 </button>

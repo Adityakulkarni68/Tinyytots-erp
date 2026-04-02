@@ -367,39 +367,37 @@ export default function AttendancePage() {
           </div>
 
           {/* Controls */}
-          <div className="flex gap-2 mb-4">
+          <div className="flex flex-col gap-2 mb-4">
             <input
               type="search"
               placeholder="Search student..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="flex-1 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full border border-slate-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
             {isViewingToday && (
-              <>
+              <div className="flex gap-2">
                 <button
                   onClick={markAllPresent}
-                  className="px-3 py-2 text-sm font-medium bg-white border border-slate-300 rounded-lg hover:bg-slate-50 text-slate-700 transition-colors whitespace-nowrap"
+                  className="flex-1 py-2 text-sm font-medium bg-white border border-slate-300 rounded-lg hover:bg-slate-50 text-slate-700 transition-colors"
                 >
                   All Present
                 </button>
                 {submittedAt && (
                   <button
-                    onClick={() => {
-                      if (confirm('Reset all students to Present?')) markAllPresent();
-                    }}
-                    className="px-3 py-2 text-sm font-medium bg-white border border-red-200 rounded-lg hover:bg-red-50 text-red-500 transition-colors whitespace-nowrap"
+                    onClick={() => { if (confirm('Reset all students to Present?')) markAllPresent(); }}
+                    className="flex-1 py-2 text-sm font-medium bg-white border border-red-200 rounded-lg hover:bg-red-50 text-red-500 transition-colors"
                   >
                     Reset
                   </button>
                 )}
                 <button
                   onClick={() => setShowImport(true)}
-                  className="px-3 py-2 text-sm font-medium bg-white border border-slate-300 rounded-lg hover:bg-slate-50 text-slate-700 transition-colors whitespace-nowrap"
+                  className="flex-1 py-2 text-sm font-medium bg-white border border-slate-300 rounded-lg hover:bg-slate-50 text-slate-700 transition-colors"
                 >
                   + Import
                 </button>
-              </>
+              </div>
             )}
           </div>
 

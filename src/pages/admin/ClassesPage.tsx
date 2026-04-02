@@ -214,27 +214,30 @@ export default function AdminClassesPage() {
       ) : (
         <div className="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100">
           {classes.map((cls) => (
-            <div key={cls.id} className="flex items-center gap-4 px-5 py-4">
+            <div key={cls.id} className="flex items-center gap-3 px-4 py-4">
               <div className="flex-1 min-w-0">
                 <p className="font-semibold text-slate-800">{cls.name}</p>
                 <p className="text-sm text-slate-500">{cls.studentIds.length} students</p>
+                <p className="text-xs text-slate-400 mt-0.5 sm:hidden">{cls.teacherNames}</p>
               </div>
-              <div className="text-sm text-slate-500 truncate max-w-[160px] hidden sm:block">
+              <div className="text-sm text-slate-500 truncate max-w-[140px] hidden sm:block">
                 {cls.teacherNames}
               </div>
-              <button
-                onClick={() => setManagingClass(cls)}
-                className="text-sm font-medium text-primary-600 hover:text-primary-800 transition-colors whitespace-nowrap"
-              >
-                Manage Teachers
-              </button>
-              <button
-                onClick={() => deleteClass(cls)}
-                disabled={deletingId === cls.id}
-                className="text-sm font-medium text-red-500 hover:text-red-700 disabled:opacity-40 transition-colors whitespace-nowrap"
-              >
-                {deletingId === cls.id ? '...' : 'Delete'}
-              </button>
+              <div className="flex flex-col sm:flex-row gap-1.5 shrink-0">
+                <button
+                  onClick={() => setManagingClass(cls)}
+                  className="text-xs font-medium text-purple-600 hover:text-purple-800 transition-colors whitespace-nowrap px-2.5 py-1.5 rounded-lg border border-purple-200 hover:bg-purple-50"
+                >
+                  Teachers
+                </button>
+                <button
+                  onClick={() => deleteClass(cls)}
+                  disabled={deletingId === cls.id}
+                  className="text-xs font-medium text-red-500 hover:text-red-700 disabled:opacity-40 transition-colors whitespace-nowrap px-2.5 py-1.5 rounded-lg border border-red-200 hover:bg-red-50"
+                >
+                  {deletingId === cls.id ? '...' : 'Delete'}
+                </button>
+              </div>
             </div>
           ))}
         </div>
