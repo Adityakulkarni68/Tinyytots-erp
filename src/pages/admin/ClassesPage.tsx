@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { collection, getDocs, addDoc, updateDoc, doc, arrayUnion, arrayRemove, query, where, deleteDoc, writeBatch } from 'firebase/firestore';
+import { collection, getDocs, addDoc, updateDoc, doc, arrayUnion, arrayRemove, query, where, writeBatch } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import type { Class, AppUser } from '../../types';
 

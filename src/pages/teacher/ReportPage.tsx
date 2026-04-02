@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { doc, getDoc, getDocs, collection, query, where } from 'firebase/firestore';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, subMonths, addMonths, isToday, parseISO } from 'date-fns';
 import { db } from '../../firebase/config';
-import { useAuth } from '../../context/AuthContext';
 import type { AttendanceRecord } from '../../types';
 
 const STATUS_DOT: Record<string, string> = {
@@ -14,7 +13,6 @@ const STATUS_DOT: Record<string, string> = {
 
 export default function TeacherReportPage() {
   const { classId } = useParams<{ classId: string }>();
-  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [className, setClassName] = useState('');

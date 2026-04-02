@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, query, where, deleteDoc, doc, updateDoc, arrayRemove, writeBatch } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, arrayRemove, writeBatch } from 'firebase/firestore';
 import { db } from '../../firebase/config';
-import type { AppUser, Class } from '../../types';
+import type { AppUser } from '../../types';
 
 interface TeacherRow extends AppUser {
   classNames: string;
