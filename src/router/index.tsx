@@ -10,6 +10,7 @@ import AdminDashboard from '../pages/admin/Dashboard';
 import AdminClassesPage from '../pages/admin/ClassesPage';
 import AdminStudentsPage from '../pages/admin/StudentsPage';
 import AdminTeachersPage from '../pages/admin/TeachersPage';
+import AdminAttendancePage from '../pages/admin/AttendancePage';
 import PrincipalDashboard from '../pages/principal/Dashboard';
 import PrincipalClassReportPage from '../pages/principal/ClassReportPage';
 
@@ -61,6 +62,7 @@ const router = createBrowserRouter([
       { path: '/admin/classes', element: <AdminClassesPage /> },
       { path: '/admin/students', element: <AdminStudentsPage /> },
       { path: '/admin/teachers', element: <AdminTeachersPage /> },
+      { path: '/admin/attendance', element: <AdminAttendancePage /> },
     ],
   },
   {
