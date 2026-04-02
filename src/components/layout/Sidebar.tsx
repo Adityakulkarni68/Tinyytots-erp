@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useLocation, NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import logo from '../../assets/logo.png';
 
 const NAV_LINKS: Record<string, { to: string; label: string; icon: string }[]> = {
   admin: [
@@ -43,11 +44,10 @@ export default function Sidebar() {
     <>
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex flex-col w-56 bg-white border-r border-slate-200 min-h-screen shrink-0">
-        <div className="px-5 py-5 border-b border-slate-100">
+        {/* Desktop brand */}
+        <div className="px-5 py-4 border-b border-slate-100">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center shrink-0">
-              <span className="text-white font-bold text-xs">TT</span>
-            </div>
+            <img src={logo} alt="Tinyy Tots" className="w-10 h-10 rounded-full object-cover shrink-0" />
             <div>
               <p className="font-bold text-slate-800 text-sm leading-tight">TINYY TOTS</p>
               <p className="text-xs text-slate-400 leading-tight">Pre-School</p>
@@ -97,10 +97,9 @@ export default function Sidebar() {
 
       {/* Mobile top bar */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-white border-b border-slate-200 px-4 h-14 flex items-center justify-between">
+        {/* Mobile top bar brand */}
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 bg-purple-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-xs">TT</span>
-          </div>
+          <img src={logo} alt="Tinyy Tots" className="w-8 h-8 rounded-full object-cover" />
           <span className="font-bold text-slate-800 text-sm">TINYY TOTS</span>
         </div>
         <button

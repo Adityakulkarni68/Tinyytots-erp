@@ -1,6 +1,7 @@
 import { useState, useEffect, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import logo from '../assets/logo.png';
 
 export default function Login() {
   const { login, user } = useAuth();
@@ -35,6 +36,7 @@ export default function Login() {
         <div className="max-w-sm w-full mx-auto">
           {/* Mobile logo */}
           <div className="lg:hidden mb-8 text-center">
+            <img src={logo} alt="Tinyy Tots" className="w-20 h-20 rounded-full object-cover mx-auto mb-3" />
             <p className="text-purple-400 font-bold text-lg tracking-wide uppercase">Tinyy Tots Pre-School</p>
             <p className="text-white/60 text-sm mt-1">Attendance Portal</p>
           </div>
@@ -121,46 +123,9 @@ export default function Login() {
           </h2>
           <p className="text-white/70 text-sm">Login to access your account</p>
 
-          {/* Illustration */}
-          <div className="mt-10">
-            <svg viewBox="0 0 400 280" className="w-full max-w-sm mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* Document */}
-              <rect x="120" y="60" width="160" height="200" rx="12" fill="white" fillOpacity="0.15" stroke="white" strokeWidth="2"/>
-              <rect x="140" y="90" width="80" height="8" rx="4" fill="white" fillOpacity="0.5"/>
-              <rect x="140" y="110" width="100" height="6" rx="3" fill="white" fillOpacity="0.3"/>
-              <rect x="140" y="126" width="90" height="6" rx="3" fill="white" fillOpacity="0.3"/>
-              <rect x="140" y="142" width="95" height="6" rx="3" fill="white" fillOpacity="0.3"/>
-              <rect x="140" y="158" width="70" height="6" rx="3" fill="white" fillOpacity="0.3"/>
-              {/* Circle on doc */}
-              <circle cx="190" cy="210" r="22" stroke="white" strokeWidth="2" fill="white" fillOpacity="0.1"/>
-              <path d="M180 210 l8 8 l14-16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-
-              {/* Person 1 — standing left */}
-              <circle cx="100" cy="110" r="14" fill="white" fillOpacity="0.9"/>
-              <path d="M86 145 Q100 135 114 145 L118 200 H82 Z" fill="white" fillOpacity="0.85"/>
-              <line x1="82" y1="200" x2="76" y2="240" stroke="white" strokeWidth="6" strokeLinecap="round"/>
-              <line x1="118" y1="200" x2="124" y2="240" stroke="white" strokeWidth="6" strokeLinecap="round"/>
-              <line x1="88" y1="160" x2="72" y2="185" stroke="white" strokeWidth="5" strokeLinecap="round"/>
-              {/* phone in hand */}
-              <rect x="60" y="178" width="14" height="20" rx="3" fill="white" fillOpacity="0.7"/>
-
-              {/* Person 2 — sitting right on doc */}
-              <circle cx="300" cy="85" r="14" fill="white" fillOpacity="0.9"/>
-              <path d="M286 118 Q300 108 314 118 L316 160 H284 Z" fill="white" fillOpacity="0.85"/>
-              <line x1="284" y1="160" x2="270" y2="195" stroke="white" strokeWidth="6" strokeLinecap="round"/>
-              <line x1="316" y1="160" x2="330" y2="175" stroke="white" strokeWidth="6" strokeLinecap="round"/>
-              <line x1="330" y1="175" x2="355" y2="175" stroke="white" strokeWidth="6" strokeLinecap="round"/>
-              <line x1="314" y1="130" x2="340" y2="118" stroke="white" strokeWidth="5" strokeLinecap="round"/>
-              {/* laptop */}
-              <rect x="330" y="100" width="30" height="20" rx="3" fill="white" fillOpacity="0.7"/>
-              <rect x="326" y="120" width="38" height="4" rx="2" fill="white" fillOpacity="0.5"/>
-
-              {/* Plant */}
-              <rect x="340" y="220" width="20" height="30" rx="4" fill="white" fillOpacity="0.4"/>
-              <ellipse cx="350" cy="210" rx="18" ry="22" fill="white" fillOpacity="0.3"/>
-              <ellipse cx="335" cy="215" rx="12" ry="16" fill="white" fillOpacity="0.25"/>
-              <ellipse cx="365" cy="215" rx="12" ry="16" fill="white" fillOpacity="0.25"/>
-            </svg>
+          {/* Logo */}
+          <div className="mt-8">
+            <img src={logo} alt="Tinyy Tots Pre-School" className="w-56 h-56 object-contain mx-auto drop-shadow-xl" />
           </div>
         </div>
       </div>

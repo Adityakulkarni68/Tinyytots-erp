@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase/config';
 import type { UserRole } from '../types';
+import logo from '../assets/logo.png';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -49,9 +50,7 @@ export default function Register() {
     return (
       <div className="min-h-screen bg-primary-50 flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-lg w-full max-w-sm p-8 text-center">
-          <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-green-600 text-2xl">✓</span>
-          </div>
+          <img src={logo} alt="Tinyy Tots" className="w-16 h-16 object-contain mx-auto mb-4" />
           <h2 className="text-xl font-bold text-slate-800 mb-2">Account Created</h2>
           <p className="text-slate-500 text-sm mb-6">
             {displayName} can now sign in with their email and password.
@@ -71,9 +70,7 @@ export default function Register() {
     <div className="min-h-screen bg-primary-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-lg w-full max-w-sm p-8">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <span className="text-white font-bold text-2xl">TT</span>
-          </div>
+          <img src={logo} alt="Tinyy Tots" className="w-20 h-20 object-contain mx-auto mb-3" />
           <h1 className="text-2xl font-bold text-primary-800">New Teacher</h1>
           <p className="text-slate-500 text-sm mt-1">Create a teacher account</p>
         </div>
